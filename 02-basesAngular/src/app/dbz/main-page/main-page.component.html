@@ -1,0 +1,21 @@
+<h1>Dragon Ball Z!</h1>
+<hr>
+
+<div class="row">
+  <div class="col">
+    <app-characters></app-characters>
+  </div>
+
+  <div class="col">
+    <h3>Add <small>{{ new.name }}</small> </h3>
+    <hr>
+
+    <form (ngSubmit)="add()">
+      <input type="text" placeholder="Name" name="name" [(ngModel)]="new.name">
+
+      <input type="text" placeholder="Power" name="power" [(ngModel)]="new.power">
+
+      <button type="submit">Add</button>
+    </form>
+  </div>
+</div>
