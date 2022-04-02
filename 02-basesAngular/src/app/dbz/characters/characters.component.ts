@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+import { Character } from '../interfaces/dbz.interfaces';
+import { DbzService } from '../services/dbz.service';
 
 @Component({
   selector: 'app-characters',
@@ -6,7 +9,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./characters.component.scss'],
 })
 export class CharactersComponent {
-  constructor() {}
+  constructor(private dbzService: DbzService) {}
 
-  characters: any[] = [];
+  // @Input() characters: Character[] = [];
+  get characters(): Character[] {
+    // console.log('characters component getter', this.dbzService.characters);
+
+    return this.dbzService.characters;
+  }
 }
