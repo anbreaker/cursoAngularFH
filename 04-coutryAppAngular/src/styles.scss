@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  height: 100%;
+  background-color: #272b30;
+  color: aliceblue;
+}
+
+#sidebar {
+  height: 100%;
+  min-height: 100vh;
+  min-width: 14rem;
+}
+
+.fondo {
+  background-color: #565656;
+  color: aliceblue;
+}
+
+.small-flag {
+  width: 40px;
+}
+
+.mr-1 {
+  margin: 0.3rem;
+}

@@ -1,0 +1,19 @@
+<div class="animate__animated animate__fadeIn animate__faster">
+  <h2>Per Capital</h2>
+  <hr />
+  <div class="row">
+    <div class="col">
+      <app-input-country (onEnter)="searchCapital($event)" placeholder="Search Capital..."></app-input-country>
+    </div>
+  </div>
+</div>
+
+<hr />
+
+<div class="alert alert-danger" *ngIf="existError">Not found {{ term }}</div>
+
+<div class="row" *ngIf="capitals.length > 0">
+  <div class="col">
+    <app-table-country [items]="capitals"></app-table-country>
+  </div>
+</div>

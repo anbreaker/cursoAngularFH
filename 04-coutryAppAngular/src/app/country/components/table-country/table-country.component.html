@@ -1,0 +1,20 @@
+<table class="table table-hover table-info animate__animated animate__fadeIn">
+  <thead class="">
+    <tr>
+      <th>#</th>
+      <th>Flag</th>
+      <th>Name</th>
+      <th>Population</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let item of items; let idx = index">
+    <tr>
+      <td>{{ idx + 1 }}</td>
+      <td><img *ngIf="item.flag" [src]="item.flag" alt="flag" class="small-flag"></td>
+      <td>{{ item.capital }} - {{ item.name }}</td>
+      <td>{{ item.population | number }}</td>
+      <td><a [routerLink]="['/country', item.alpha2Code]">Show...</a></td>
+    </tr>
+  </tbody>
+</table>
