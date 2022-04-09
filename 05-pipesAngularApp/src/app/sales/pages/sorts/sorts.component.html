@@ -1,0 +1,75 @@
+<div class="text-layout">
+  <h1>Customs Pipes</h1>
+  <p>Customs Angular's Pipes</p>
+  <p><b>True default: </b>{{ "Customs Pipes" | upperCustom }}</p>
+  <p><b>Send False: </b>{{ "Customs Pipes" | upperCustom: false }}</p>
+
+  <p>
+    <b>Change with Button: </b>{{ "Customs Pipes" | upperCustom: onCapital }}
+  </p>
+
+  <button (click)="changeCapital()" pButton type="button" label="Change Capital" class="p-button-info mb-3"></button>
+</div>
+
+<h2>Custom Table</h2>
+<p-toolbar>
+  <div class="p-toolbar-group-left"></div>
+
+  <div class="p-toolbar-group-right">
+    <button pButton label="Per Name" (click)="changeSort('name')" icon="pi pi-sort" class="mr-2"></button>
+    <button pButton label="Fly" (click)="changeSort('fly')" icon="pi pi-sort" class="mr-2 p-button-success"></button>
+    <button pButton label="Per Color" (click)="changeSort('color')" icon="pi pi-sort"
+      class="mr-2 p-button-help"></button>
+  </div>
+</p-toolbar>
+
+
+<div class="grid">
+  <div class="col mt-3">
+    <p-table [value]="heroes | sort: sortBy">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Name</th>
+          <th>Fly</th>
+          <th>Color</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-heroe>
+        <tr>
+          <td>{{ heroe.name | titlecase }}</td>
+          <td>{{ heroe.fly | flyCustom | titlecase }}</td>
+          <td>{{ heroe.color }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<h2>PrimeNg Table</h2>
+<div class="grid">
+  <div class="col mt-3">
+    <p-table [value]="heroes | slice:0">
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="name">
+            Name
+            <p-sortIcon field="name"></p-sortIcon>
+          </th>
+          <th pSortableColumn="fly">
+            Fly<p-sortIcon field="fly"></p-sortIcon>
+          </th>
+          <th pSortableColumn="color">
+            Color<p-sortIcon field="color"></p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-heroe>
+        <tr>
+          <td>{{ heroe.name | titlecase }}</td>
+          <td>{{ heroe.fly | flyCustom | titlecase }}</td>
+          <td>{{ heroe.color }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

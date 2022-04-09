@@ -1,0 +1,70 @@
+<div class="text-layout">
+  <h1>Basics Pipes</h1>
+  <p>Angular's Pipes Commons Module</p>
+</div>
+
+<div class="grid">
+  <div class="col-4">
+    <p-card header="Uppercase" [subheader]="nameUpper">
+      {{ nameUpper| uppercase }}
+    </p-card>
+  </div>
+  <div class="col-4">
+    <p-card header="Lowercase" [subheader]="nameLower">
+      {{ nameLower | lowercase }}
+    </p-card>
+  </div>
+  <div class="col-4">
+    <p-card header="Titlecase" [subheader]="nameCap">
+      {{ nameCap | titlecase }}
+    </p-card>
+  </div>
+</div>
+
+<div class="text-layout">
+  <h1>Dates Pipes</h1>
+  <p>Angular's Pipes Date</p>
+</div>
+
+<div class="grid">
+  <div class="col-6">
+    <p-card>
+      <ul>
+        <li>Date</li>
+        <li>Date | date</li>
+        <li>Date | date: 'short'</li>
+        <li>Date | date: 'long'</li>
+        <li>Date | date: 'MMMM'</li>
+        <li>Date | date: 'yyyy / MMMM / dd'</li>
+      </ul>
+
+      <hr>
+      <ul>
+        <li>dateToday | date: 'long': 'GMT-6'</li>
+        <li>dateToday | date: 'long': 'GMT-4'</li>
+        <li>dateToday | date: 'long': '' : 'en'</li>
+        <li>dateToday | date: 'long': '' : 'pt'</li>
+      </ul>
+    </p-card>
+  </div>
+  <div class="col-6">
+    <p-card>
+      <ul>
+        <li>{{ dateToday }}</li>
+        <li>{{ dateToday | date }}</li>
+        <li>{{ dateToday | date: 'short' }}</li>
+        <li>{{ dateToday | date: 'long' }}</li>
+        <li>{{ dateToday | date: 'MMMM' }}</li>
+        <li>{{ dateToday | date: 'yyyy / MMMM / dd' }}</li>
+      </ul>
+
+      <hr>
+      <ul>
+        <li>{{ dateToday | date: 'long': 'GMT-6' }}</li>
+        <li>{{ dateToday | date: 'long': 'GMT-4' }}</li>
+        <li>{{ dateToday | date: 'long': '' : 'en' }}</li>
+        <li>{{ dateToday | date: 'long': '' : 'pt' }}</li>
+      </ul>
+    </p-card>
+  </div>
+</div>

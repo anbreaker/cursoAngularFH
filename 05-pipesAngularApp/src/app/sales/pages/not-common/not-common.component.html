@@ -1,0 +1,75 @@
+<div class="text-layout">
+  <h1>Not Commons Pipes</h1>
+  <p>Angular's Pipes Commons Module</p>
+</div>
+
+<div class="grid">
+  <div class="col md:col-6">
+    <p-fieldset legend="i18nSelect Pipe" [toggleable]="true">
+      <p>
+        Hi {{ gender | i18nSelect: invitationMap }} {{ name }}, your need learn
+        Angular!
+      </p>
+
+      <button (click)="changeClient()" pButton type="button" label="Change Name" icon="pi pi-user" iconPos="right"
+        class="p-button-help">
+      </button>
+    </p-fieldset>
+  </div>
+
+  <div class="col md:col-6">
+    <p-fieldset legend="i18nSelectPlural Pipe" [toggleable]="true">
+      <p>Actualmente tenemos {{ clients.length | i18nPlural: clientsMap }}.</p>
+
+      <button (click)="deleteClient()" pButton type="button" label="Delete Client" icon="pi pi-user" iconPos="right"
+        class="p-button-danger">
+      </button>
+    </p-fieldset>
+  </div>
+
+  <div class="col md:col-6">
+    <p-fieldset legend="Slice Pipe" [toggleable]="true">
+      <b> Original </b>
+      <pre>{{ clients }}</pre>
+
+      <b>slice:0:2</b>
+      <pre>{{ clients | slice: 0:2 }}</pre>
+
+      <b>slice:1:2</b>
+      <pre>{{ clients | slice: 1:2 }}</pre>
+
+      <b>slice:1:3</b>
+      <pre>{{ clients | slice: 1:3 }}</pre>
+
+      <b>slice:0:3</b>
+      <pre>{{ name | slice: 0:3 }}</pre>
+    </p-fieldset>
+  </div>
+
+  <div class="col md:col-6">
+    <p-fieldset legend="Json Pipe" [toggleable]="true">
+      <pre>{{ heroes | json }}</pre>
+    </p-fieldset>
+  </div>
+
+  <div class="col md:col-6">
+    <p-fieldset legend="KeyValue Pipe" [toggleable]="true">
+      <ul>
+        <li *ngFor="let item of person | keyvalue">
+          <b>{{ item.key }}</b> : {{ item.value }}
+        </li>
+      </ul>
+    </p-fieldset>
+  </div>
+
+  <div class="col md:col-6">
+    <p-fieldset legend="Json Pipe" [toggleable]="true">
+      <pre>{{ myObservable | async }}</pre>
+
+      <pre *ngIf="!(promiseValue | async)">Waiting for promise...</pre>
+      <pre>{{ promiseValue | async }}</pre>
+    </p-fieldset>
+  </div>
+
+
+</div>

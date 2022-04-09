@@ -1,0 +1,23 @@
+<div class="text-layout">
+  <h1>Decimal Pipes Number</h1>
+  <p>Angular's Pipes Commons Module</p>
+</div>
+
+<div class="grid">
+  <div class="col-4">
+    <p-card header="Net Sales" subheader="Current Year">
+      {{ netSales | number: '1.2-2' }}
+      <i class="pi pi-euro"></i>
+    </p-card>
+  </div>
+  <div class="col-4">
+    <p-card header="Gross Sales" subheader="Current Year">
+      {{ (netSales + 1000000) | currency: 'EUR' : 'symbol-narrow': '1.0-4' }}
+    </p-card>
+  </div>
+  <div class="col-4">
+    <p-card header="Gross Sales" subheader="Percentage Year">
+      {{ percentage | percent : '2.2-4'}}
+    </p-card>
+  </div>
+</div>
