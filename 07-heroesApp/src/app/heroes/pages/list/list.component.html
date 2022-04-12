@@ -1,0 +1,17 @@
+<h1>Heroes List</h1>
+<mat-divider></mat-divider>
+<br />
+
+<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="20px">
+
+  <div *ngIf="loading">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <ng-container *ngIf="!loading">
+
+    <div fxFlex="20" fxFlex.lg="15" fxFlex.sm="30" fxFlex.="30" *ngFor="let hero of heroes">
+      <app-hero-card-component [hero]="hero"></app-hero-card-component>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,44 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h4>{{ hero.superhero }}</h4>
+    </mat-card-title>
+
+    <mat-card-subtitle>
+      <h4>{{ hero.alter_ego }}</h4>
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <div *ngIf="loading">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <!-- <img (load)="onLoad()" [hidden]="!loading" mat-card-image [src]="hero | image" [alt]="hero.alter_ego" /> -->
+  <img (load)="onLoad()" [style.visibility]="(!loading) ? 'visible' : 'hidden'"
+    [style.display]="(!loading) ? 'block' : 'none'" mat-card-image [src]="hero | image" [alt]="hero.alter_ego" />
+
+  <mat-card-content>
+    <h3>{{ hero.publisher }}</h3>
+    <p>
+      <strong>
+        First Appearance: <i>{{ hero.first_appearance }}</i>
+      </strong>
+      <br />
+
+      <strong>
+        Character: <i>{{ hero.characters }}</i>
+        <br />
+      </strong>
+    </p>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-button color="warn" [routerLink]="['/heroes', hero.id]">
+      Read More...
+    </button>
+
+    <button mat-button color="info" [routerLink]="['/heroes/edit', hero.id]">
+      More info...
+    </button>
+  </mat-card-actions>
+</mat-card>
