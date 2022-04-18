@@ -15,7 +15,7 @@
             formControlName="product"
           />
 
-          <span class="form-text text-danger" *ngIf="fielIsValid('product')">
+          <span class="form-text text-danger" *ngIf="fieldIsValid('product')">
             Must have at least three letters
           </span>
         </div>
@@ -31,7 +31,7 @@
             type="number"
             formControlName="price"
           />
-          <span class="form-text text-danger" *ngIf="fielIsValid('price')">
+          <span class="form-text text-danger" *ngIf="fieldIsValid('price')">
             The price must have a positive value
           </span>
         </div>
@@ -47,7 +47,7 @@
             placeholder="Stocks"
             formControlName="stocks"
           />
-          <span class="form-text text-danger" *ngIf="fielIsValid('stocks')">
+          <span class="form-text text-danger" *ngIf="fieldIsValid('stocks')">
             The stocks must have a positive value
           </span>
         </div>

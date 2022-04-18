@@ -1,14 +1,19 @@
 <h2>Reactive Forms <small>Dinamics</small></h2>
 <hr />
 
-<form autocomplete="off">
+<form autocomplete="off" [formGroup]="myForm" (ngSubmit)="save()">
   <!-- name -->
   <div class="row mb-3">
     <label class="col-sm-3 col-form-label">Name</label>
     <div class="col-sm-9">
-      <input class="form-control" placeholder="Name" />
+      <input
+        class="form-control"
+        placeholder="Name"
+        formControlName="name"
+        type="text"
+      />
 
-      <span class="form-text text-danger">
+      <span class="form-text text-danger" *ngIf="fieldIsValid('name')">
         Must have at least three letters
       </span>
     </div>
@@ -24,9 +29,14 @@
           type="text"
           class="form-control"
           placeholder="Add new favorite"
-          (keyup.enter)="(1)"
+          [formControl]="newFavorite"
+          (keyup.enter)="addFavorite()"
         />
-        <button class="btn btn-outline-warning" type="button" (click)="(1)">
+        <button
+          class="btn btn-outline-warning"
+          type="button"
+          (click)="addFavorite()"
+        >
           Add
         </button>
       </div>
@@ -36,33 +46,39 @@
   <!-- List Favourite Games -->
   <div class="row mb-3">
     <label class="col-sm-3 col-form-label">Favorites</label>
-    <div class="col-sm-9">
-      <!-- <div
+
+    <div class="col-sm-9" formArrayName="favorites">
+      <div
         class="input-group mb-1"
-        *ngFor="let game of person.favorites; let i = index"
+        *ngFor="let favorite of favoritesArr.controls; let i = index"
       >
-        <input class="form-control" />
+        <input class="form-control" [formControlName]="i" />
         <button
           class="btn btn-outline-danger"
           type="button"
-          (click)="(1)"
+          (click)="delete(i)"
         >
           Delete
         </button>
-      </div> -->
+      </div>
     </div>
   </div>
 
   <div class="row">
     <div class="col-sm-12">
-      <button type="button" class="btn btn-primary float-end" (click)="(1)">
-        Save
-      </button>
+      <button type="submit" class="btn btn-primary float-end">Save</button>
     </div>
   </div>
 </form>
 
-<!-- <span>Person</span>s
-<pre>
-  {{ person | json }}
-</pre> -->
+<span>Valid</span>
+<pre>{{ myForm.valid }}</pre>
+<br />
+
+<span>Value</span>
+<pre>{{ myForm.value | json }}</pre>
+<br />
+
+<span>Agregar Juego</span>
+<pre>{{ newFavorite.valid }}</pre>
+<pre>{{ newFavorite.value }}</pre>
