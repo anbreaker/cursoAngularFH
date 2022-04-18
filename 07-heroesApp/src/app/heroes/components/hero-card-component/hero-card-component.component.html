@@ -1,12 +1,7 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title>
-      <h4>{{ hero.superhero }}</h4>
-    </mat-card-title>
-
-    <mat-card-subtitle>
-      <h4>{{ hero.alter_ego }}</h4>
-    </mat-card-subtitle>
+    <mat-card-title> {{ hero.superhero }} </mat-card-title>
+    <mat-card-subtitle> {{ hero.alter_ego }} </mat-card-subtitle>
   </mat-card-header>
 
   <div *ngIf="loading">
@@ -14,8 +9,8 @@
   </div>
 
   <!-- <img (load)="onLoad()" [hidden]="!loading" mat-card-image [src]="hero | image" [alt]="hero.alter_ego" /> -->
-  <img (load)="onLoad()" [style.visibility]="(!loading) ? 'visible' : 'hidden'"
-    [style.display]="(!loading) ? 'block' : 'none'" mat-card-image [src]="hero | image" [alt]="hero.alter_ego" />
+  <img (load)="onLoad()" [style.visibility]="!loading ? 'visible' : 'hidden'"
+    [style.display]="!loading ? 'block' : 'none'" mat-card-image [src]="hero | image" [alt]="hero.alter_ego" />
 
   <mat-card-content>
     <h3>{{ hero.publisher }}</h3>
@@ -38,7 +33,7 @@
     </button>
 
     <button mat-button color="info" [routerLink]="['/heroes/edit', hero.id]">
-      More info...
+      Edit...
     </button>
   </mat-card-actions>
 </mat-card>
