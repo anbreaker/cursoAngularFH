@@ -1,1 +1,55 @@
-<p>register works!</p>
+<h2>Reactives Validations</h2>
+<hr />
+
+<div class="row">
+  <div class="col">
+    <form autocomplete="off">
+      <!-- name -->
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Name</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" placeholder="User's name" />
+
+          <span class="form-text text-danger">Missing name and surname</span>
+        </div>
+      </div>
+
+      <!-- email -->
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">UserName</label>
+        <div class="col-sm-9">
+          <input type="email" class="form-control" placeholder="User's email" />
+        </div>
+      </div>
+
+      <!-- password -->
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Password</label>
+        <div class="col-sm-9">
+          <input
+            type="password"
+            class="form-control"
+            placeholder="User's password"
+          />
+        </div>
+      </div>
+      <!-- password2 -->
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Confirm Password</label>
+        <div class="col-sm-9">
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Confirm user password"
+          />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-primary float-end">Register</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
