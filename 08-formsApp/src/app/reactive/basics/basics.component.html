@@ -1,8 +1,9 @@
 <h2>Reactive Forms: <small>Basics</small></h2>
+<hr />
 
 <div class="row">
   <div class="col">
-    <form autocomplete="off" [formGroup]="myForm">
+    <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="save()">
       <!-- Product -->
       <div class="mb-3 row">
         <label class="col-sm-3 col-form-label">Product</label>
@@ -14,7 +15,7 @@
             formControlName="product"
           />
 
-          <span class="form-text text-danger">
+          <span class="form-text text-danger" *ngIf="fielIsValid('product')">
             Must have at least three letters
           </span>
         </div>
@@ -30,7 +31,7 @@
             type="number"
             formControlName="price"
           />
-          <span class="form-text text-danger">
+          <span class="form-text text-danger" *ngIf="fielIsValid('price')">
             The price must have a positive value
           </span>
         </div>
@@ -46,18 +47,16 @@
             placeholder="Stocks"
             formControlName="stocks"
           />
+          <span class="form-text text-danger" *ngIf="fielIsValid('stocks')">
+            The stocks must have a positive value
+          </span>
         </div>
       </div>
 
       <div class="row">
         <div class="col">
-          <button
-            type="submit"
-            class="btn btn-primary float-end"
-            [disabled]="!myForm.valid"
-          >
-            Save
-          </button>
+          <!-- [disabled]="!myForm.valid" -->
+          <button type="submit" class="btn btn-primary float-end">Save</button>
         </div>
       </div>
     </form>
@@ -77,5 +76,8 @@
 
     <span>Value </span>
     <pre>{{ myForm.value | json }}</pre>
+
+    <span>Price </span>
+    <pre>{{ myForm.controls["price"]?.errors | json }}</pre>
   </div>
 </div>
