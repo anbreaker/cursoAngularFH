@@ -20,6 +20,10 @@ export class BasicsComponent implements OnInit {
     );
   }
 
+  validPrice(): boolean {
+    return this.myForm?.form.controls['price']?.value < 0;
+  }
+
   save() {
     console.log(this.myForm);
   }
