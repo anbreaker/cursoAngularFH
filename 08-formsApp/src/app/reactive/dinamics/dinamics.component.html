@@ -1,1 +1,68 @@
-<p>dinamics works! Reactive</p>
+<h2>Reactive Forms <small>Dinamics</small></h2>
+<hr />
+
+<form autocomplete="off">
+  <!-- name -->
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Name</label>
+    <div class="col-sm-9">
+      <input class="form-control" placeholder="Name" />
+
+      <span class="form-text text-danger">
+        Must have at least three letters
+      </span>
+    </div>
+  </div>
+
+  <!-- Add new Game -->
+
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Add</label>
+    <div class="col-sm-9">
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Add new favorite"
+          (keyup.enter)="(1)"
+        />
+        <button class="btn btn-outline-warning" type="button" (click)="(1)">
+          Add
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- List Favourite Games -->
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Favorites</label>
+    <div class="col-sm-9">
+      <!-- <div
+        class="input-group mb-1"
+        *ngFor="let game of person.favorites; let i = index"
+      >
+        <input class="form-control" />
+        <button
+          class="btn btn-outline-danger"
+          type="button"
+          (click)="(1)"
+        >
+          Delete
+        </button>
+      </div> -->
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <button type="button" class="btn btn-primary float-end" (click)="(1)">
+        Save
+      </button>
+    </div>
+  </div>
+</form>
+
+<!-- <span>Person</span>s
+<pre>
+  {{ person | json }}
+</pre> -->
