@@ -1,0 +1,80 @@
+<h2>Template: Basics</h2>
+
+<div class="row">
+  <div class="col">
+    <form (ngSubmit)="save()" #myForm="ngForm" autocomplete="off">
+      <!-- Product -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Product</label>
+        <div class="col-sm-9">
+          <input
+            class="form-control"
+            placeholder="Product name"
+            type="text"
+            ngModel
+            name="product"
+            minlength="3"
+            required
+          />
+          <span class="form-text text-danger" *ngIf="validName()">
+            Must have at least three letters
+          </span>
+        </div>
+      </div>
+
+      <!-- Price Product -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Price</label>
+        <div class="col-sm-9">
+          <input
+            class="form-control"
+            placeholder="Price Product"
+            type="number"
+            name="price"
+            ngModel
+            required
+            min="0"
+          />
+        </div>
+      </div>
+
+      <!-- Stocks -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Stocks</label>
+        <div class="col-sm-9">
+          <input
+            type="number"
+            class="form-control"
+            name="stock"
+            ngModel
+            placeholder="Stocks"
+          />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button type="submit" class="btn btn-primary float-right">
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <span>Valid </span>
+    <pre>{{ myForm.valid }}</pre>
+
+    <span>Pristine </span>
+    <pre>{{ myForm.pristine }}</pre>
+
+    <span>Touched </span>
+    <pre>{{ myForm.touched }}</pre>
+
+    <span>Value </span>
+    <pre>{{ myForm.value | json }}</pre>
+  </div>
+</div>
