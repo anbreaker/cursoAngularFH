@@ -1,1 +1,95 @@
-<p>dinamics works! Template</p>
+<h2>Templates <small>Dinamics</small></h2>
+<hr />
+
+<form (ngSubmit)="save()" #myForm="ngForm" autocomplete="off">
+  <!-- name -->
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Name</label>
+    <div class="col-sm-9">
+      <input
+        class="form-control"
+        placeholder="Name"
+        [ngModel]="person.name"
+        name="name"
+        minlength="3"
+        required
+      />
+
+      <span
+        class="form-text text-danger"
+        *ngIf="myForm.controls['name']?.errors"
+      >
+        Must have at least three letters
+      </span>
+    </div>
+  </div>
+
+  <!-- Add new Game -->
+
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Add</label>
+    <div class="col-sm-9">
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Add new favorite"
+          name="newGame"
+          (keyup.enter)="addGame()"
+          [(ngModel)]="newGame"
+        />
+        <button
+          [disabled]="newGame.length < 3"
+          class="btn btn-outline-primary"
+          type="button"
+          (click)="addGame()"
+        >
+          Add
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- List Favourite Games -->
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Favourites</label>
+    <div class="col-sm-9">
+      <div
+        class="input-group mb-1"
+        *ngFor="let game of person.favorites; let i = index"
+      >
+        <input
+          [(ngModel)]="game.name"
+          name="favorite.{{ i }}"
+          class="form-control"
+          required
+        />
+        <button
+          class="btn btn-outline-danger"
+          type="button"
+          (click)="delete(i)"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <button
+        [disabled]="!myForm.valid"
+        type="button"
+        class="btn btn-primary float-right"
+        (click)="save()"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</form>
+
+<span>Person</span>
+<pre>
+  {{ person | json }}
+</pre>
