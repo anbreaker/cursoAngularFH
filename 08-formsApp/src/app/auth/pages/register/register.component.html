@@ -23,7 +23,7 @@
 
       <!-- email -->
       <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">UserName</label>
+        <label class="col-sm-3 col-form-label">Email</label>
         <div class="col-sm-9">
           <input
             type="email"
@@ -33,6 +33,22 @@
           />
           <span class="form-text text-danger" *ngIf="fieldIsValid('email')">
             Email is required
+          </span>
+        </div>
+      </div>
+
+      <!-- email -->
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">UserName</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="username"
+            placeholder="Username"
+          />
+          <span class="form-text text-danger" *ngIf="fieldIsValid('username')">
+            Username anbreaker already exists
           </span>
         </div>
       </div>
@@ -78,3 +94,6 @@
 
 <h4>Email</h4>
 <pre>{{ myForm.controls["email"].errors | json }}</pre>
+
+<h4>Username</h4>
+<pre>{{ myForm.controls["username"].errors | json }}</pre>
