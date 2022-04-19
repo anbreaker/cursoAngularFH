@@ -37,7 +37,7 @@
         </div>
       </div>
 
-      <!-- email -->
+      <!-- username -->
       <div class="row mb-3">
         <label class="col-sm-3 col-form-label">UserName</label>
         <div class="col-sm-9">
@@ -60,8 +60,12 @@
           <input
             type="password"
             class="form-control"
+            formControlName="password"
             placeholder="User's password"
           />
+          <span class="form-text text-danger" *ngIf="fieldIsValid('password')">
+            Password must be at least 3 characters long
+          </span>
         </div>
       </div>
       <!-- password2 -->
@@ -71,8 +75,12 @@
           <input
             type="password"
             class="form-control"
+            formControlName="password2"
             placeholder="Confirm user password"
           />
+          <span class="form-text text-danger" *ngIf="fieldIsValid('password2')">
+            Password must be equal to password
+          </span>
         </div>
       </div>
 
@@ -89,6 +97,9 @@
 
 <h4>Form Valid: {{ myForm.valid }}</h4>
 
+<h4>Form Errors:</h4>
+<pre>{{ myForm.errors | json }}</pre>
+
 <h4>Name</h4>
 <pre>{{ myForm.controls["name"].errors | json }}</pre>
 
@@ -97,3 +108,9 @@
 
 <h4>Username</h4>
 <pre>{{ myForm.controls["username"].errors | json }}</pre>
+
+<h4>Password</h4>
+<pre>{{ myForm.controls["password"].errors | json }}</pre>
+
+<h4>Confirm Password</h4>
+<pre>{{ myForm.controls["password2"].errors | json }}</pre>
