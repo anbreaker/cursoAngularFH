@@ -1,8 +1,9 @@
 <h1 class="mt-5">Nested Selectors</h1>
 <hr />
 
-<form class="row" [formGroup]="myForm" (ngSubmit)="save()">
-  <div class="col">
+<form [formGroup]="myForm" (ngSubmit)="save()">
+  <div class="col mb-2">
+    <!-- Regions -->
     <label class="form-label">Continent</label>
     <select class="form-control" formControlName="region">
       <option value="">--Select Continent--</option>
@@ -10,10 +11,20 @@
         {{ region }}
       </option>
     </select>
+
+    <!-- Countries -->
+    <label class="form-label mt-2">Country</label>
+    <select class="form-control" formControlName="country">
+      <option value="">--Select Country--</option>
+      <option *ngFor="let country of countries" [value]="country.alpha3Code">
+        {{ country.name }}
+      </option>
+    </select>
   </div>
+
 </form>
 
-<div class="row mt-2">
+<div class="row">
   <div class="col">
     <button type="submit" class="btn btn-primary float-end">Select</button>
   </div>
