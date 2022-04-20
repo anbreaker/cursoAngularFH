@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { combineLatest, Observable, of } from 'rxjs';
 
 import { CountrySmall, Country } from '../interfaces/country.interface';
 
@@ -32,5 +32,28 @@ export class CountryServices {
     const url: string = `${this.baseUrl}alpha/${code}`;
 
     return this.http.get<Country>(url);
+  }
+
+  getCountryByCodeSmall(code: string): Observable<CountrySmall> {
+    const url: string = `${this.baseUrl}alpha/${code}?fields=name,alphaCode3`;
+
+    return this.http.get<CountrySmall>(url);
+  }
+
+  getCountriesByCode(borders: string[]): Observable<CountrySmall[]> {
+    if (!borders) {
+      return of([]);
+    }
+
+    const fetchs: Observable<CountrySmall>[] = [];
+
+    borders.forEach((code) => {
+      console.log(code, 'code');
+      const fetch = this.getCountryByCodeSmall(code);
+
+      fetchs.push(fetch);
+    });
+
+    return combineLatest(fetchs);
   }
 }

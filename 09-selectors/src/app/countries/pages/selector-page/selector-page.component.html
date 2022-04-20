@@ -4,38 +4,52 @@
 <form [formGroup]="myForm" (ngSubmit)="save()">
   <div class="col mb-2">
     <!-- Regions -->
-    <label class="form-label">Continent</label>
-    <select class="form-control" formControlName="region">
-      <option value="">--Select Continent--</option>
-      <option *ngFor="let region of regions" [value]="region | lowercase">
-        {{ region }}
-      </option>
-    </select>
+    <div>
+      <label class="form-label">Continent</label>
+      <select class="form-control" formControlName="region">
+        <option value="">--Select Continent--</option>
+        <option *ngFor="let region of regions" [value]="region | lowercase">
+          {{ region }}
+        </option>
+      </select>
+    </div>
 
     <!-- Countries -->
-    <label class="form-label mt-2">Country</label>
-    <select class="form-control" formControlName="country">
-      <option value="">--Select Country--</option>
-      <option *ngFor="let country of countries" [value]="country.alpha3Code">
-        {{ country.name }}
-      </option>
-    </select>
+    <div *ngIf="countries.length > 0">
+      <label class="form-label mt-2">Country</label>
+      <select class="form-control" formControlName="country">
+        <option value="">--Select Country--</option>
+        <option *ngFor="let country of countries" [value]="country.alpha3Code">
+          {{ country.name }}
+        </option>
+      </select>
+    </div>
 
     <!-- Country Borders -->
-    <label class="form-label mt-2">Country Borders</label>
-    <select class="form-control" formControlName="border">
-      <option value="">--Select Country Border--</option>
-      <option *ngFor="let border of borders" [value]="border">
-        {{ border }}
-      </option>
-    </select>
+    <div *ngIf="borders.length > 0">
+      <label class="form-label mt-2">Country Borders</label>
+      <select class="form-control" formControlName="border">
+        <option value="">--Select Country Border--</option>
+        <option *ngFor="let border of borders" [value]="border.name">
+          {{ border.name }}
+        </option>
+      </select>
+    </div>
   </div>
 
 </form>
 
+<div class="row" *ngIf="loading">
+  <div class="col">
+    <div class="alert alert-primary">
+      Loading...
+    </div>
+  </div>
+</div>
+
 <div class="row">
   <div class="col">
-    <button type="submit" class="btn btn-primary float-end">Select</button>
+    <button type="submit" class="btn btn-primary float-end" (click)="save()" [disabled]="!myForm.valid">Select</button>
   </div>
 </div>
 

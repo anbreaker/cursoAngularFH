@@ -17,9 +17,13 @@ export class SelectorPageComponent implements OnInit {
     border: ['', [Validators.required]],
   });
 
+  // Selectors
   regions: string[] = [];
   countries: CountrySmall[] = [];
-  borders: string[] = [];
+  borders: CountrySmall[] = [];
+
+  // UI
+  loading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -33,14 +37,17 @@ export class SelectorPageComponent implements OnInit {
     this.myForm
       .get('region')
       ?.valueChanges.pipe(
-        tap((_) => this.myForm.get('country')?.reset('')),
+        tap((_) => {
+          this.myForm.get('country')?.reset('');
+          this.loading = true;
+        }),
 
         switchMap((region) => this.countryServices.getCountriesByRegion(region))
       )
       .subscribe((contries) => {
         this.countries = contries;
 
-        console.log(this.countries);
+        this.loading = false;
       });
 
     // Change Country
@@ -48,15 +55,23 @@ export class SelectorPageComponent implements OnInit {
       .get('country')
       ?.valueChanges.pipe(
         tap((_) => {
-          this.borders = [];
           this.myForm.get('border')?.reset('');
-        }),
-        switchMap((code) => this.countryServices.getCountryByAlphaCode(code))
-      )
-      .subscribe((country) => {
-        console.log(country);
 
-        this.borders = country?.borders || [];
+          this.loading = true;
+        }),
+        switchMap((code) => this.countryServices.getCountryByAlphaCode(code)),
+        switchMap((country) => {
+          console.log('cosas asadsfdasjfldf');
+          return this.countryServices.getCountriesByCode(country?.borders!);
+        })
+      )
+      .subscribe((countries) => {
+        // this.borders = country?.borders || [];
+        this.borders = countries;
+
+        console.log(countries);
+
+        this.loading = false;
       });
   }
 
