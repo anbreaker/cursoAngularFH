@@ -20,6 +20,15 @@
         {{ country.name }}
       </option>
     </select>
+
+    <!-- Country Borders -->
+    <label class="form-label mt-2">Country Borders</label>
+    <select class="form-control" formControlName="border">
+      <option value="">--Select Country Border--</option>
+      <option *ngFor="let border of borders" [value]="border">
+        {{ border }}
+      </option>
+    </select>
   </div>
 
 </form>
