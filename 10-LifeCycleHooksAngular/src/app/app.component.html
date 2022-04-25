@@ -1,1 +1,8 @@
-<h1>Hello</h1>
+<h1>Life CycleHooks Angular</h1>
+<hr>
+
+<button (click)="show = !show" class="btn btn-primary mb-2">
+  {{ show ? 'Hide' : 'Show' }}
+</button>
+
+<app-life-cicle-hooks *ngIf="show"></app-life-cicle-hooks>
