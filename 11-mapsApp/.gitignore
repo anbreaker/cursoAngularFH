@@ -3,6 +3,7 @@
 # custom
 environment.prod.ts
 environment.ts
+package-lock.json
 
 # Compiled output
 /dist
