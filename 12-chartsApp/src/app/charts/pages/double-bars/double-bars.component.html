@@ -2,8 +2,16 @@
 <hr />
 
 <div class="row">
-  <div class="col-md-6">Chart 1</div>
   <div class="col-md-6">
-    <app-chart-bar></app-chart-bar>
+    <app-chart-bar
+      [barChartOptions]="productsOptions"
+      [barProvidersLabels]="providersLabels"
+      [barProvidersData]="productsData"
+      [barShowButton]="true"
+    ></app-chart-bar>
+  </div>
+
+  <div class="col-md-6">
+    <app-chart-bar [barProvidersData]="providersData"></app-chart-bar>
   </div>
 </div>
