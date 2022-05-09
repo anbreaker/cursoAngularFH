@@ -1,16 +1,51 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { ChartData, ChartEvent, ChartType } from 'chart.js';
 
 @Component({
   selector: 'app-dona',
   templateUrl: './dona.component.html',
-  styles: [
-  ]
+  styles: [],
 })
-export class DonaComponent implements OnInit {
+export class DonaComponent {
+  constructor() {}
 
-  constructor() { }
+  // Doughnut
+  public doughnutChartLabels: string[] = [
+    'Example 1',
+    'Example 2',
+    'Example 3',
+  ];
 
-  ngOnInit(): void {
+  public doughnutChartData: ChartData<'doughnut'> = {
+    labels: this.doughnutChartLabels,
+    datasets: [
+      {
+        data: [350, 450, 100],
+        backgroundColor: ['#EB6C99', '#54CDEB', '#EBDC3D'],
+      },
+    ],
+  };
+
+  public doughnutChartType: ChartType = 'doughnut';
+
+  // events
+  public chartClicked({
+    event,
+    active,
+  }: {
+    event: ChartEvent;
+    active: {}[];
+  }): void {
+    console.log(event, active);
   }
 
+  public chartHovered({
+    event,
+    active,
+  }: {
+    event: ChartEvent;
+    active: {}[];
+  }): void {
+    console.log(event, active);
+  }
 }
