@@ -11,13 +11,25 @@
     </div>
 
     <div class="col-auto">
-      <span class="form-text" *ngIf="hasError('name')"> Is required </span>
+      <span
+        errorMsg
+        [color]="color"
+        [msg]="message1"
+        [valid]="!hasError('name')"
+      >
+      </span>
     </div>
   </div>
 
   <div class="row mt-2">
     <div class="col">
-      <button class="btn btn-primary">Save</button>
+      <button class="btn btn-primary" (click)="changeName()">Save</button>
+    </div>
+
+    <div class="col">
+      <button class="btn btn-secondary" (click)="changeColor()">
+        Change Color
+      </button>
     </div>
   </div>
 </form>
