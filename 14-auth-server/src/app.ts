@@ -15,6 +15,9 @@ import authRoutes from './routes/auth.routes';
 // Initializations
 export const app = express();
 
+// Public directory
+app.use(express.static('public'));
+
 //middlewares
 
 // comunications with other servers
