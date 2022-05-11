@@ -3,11 +3,10 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import cors from 'cors';
 
-// TODO Config Database and decomment this lines.
-// Connect to DB
-// import { connectDB } from './database/db.config.js';
+import { connectDB } from './database/db.config.js';
 
-// connectDB();
+// Connect to DB
+connectDB();
 
 // Routes
 import authRoutes from './routes/auth.routes';
