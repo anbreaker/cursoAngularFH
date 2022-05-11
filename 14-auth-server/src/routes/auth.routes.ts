@@ -1,17 +1,39 @@
 import { Router } from 'express';
+import { check } from 'express-validator';
 
-import { greetingsMiddleware } from '../middlewares/greetingsMiddleware';
-import { postCreateUser, loginUser, validateToken } from '../controllers/auth.controller';
+import { validateFields } from '../middlewares/validateFields';
+import {
+  postCreateUser,
+  postLoginUser,
+  getValidateToken,
+} from '../controllers/auth.controller';
 
 const router = Router();
 
 // /auth/new POST create user
-router.post('/new', postCreateUser);
+router.post(
+  '/new',
+  [
+    check('username', 'User name is required').notEmpty(),
+    check('email', 'Email is required').isEmail(),
+    check('password', 'Password must be 3 characters').isLength({ min: 3 }),
+    validateFields,
+  ],
+  postCreateUser
+);
 
 // /auth/  POST login user
-router.post('/', loginUser);
+router.post(
+  '/',
+  [
+    check('email', 'Email is required').isEmail(),
+    check('password', 'Password must be 3 characters').isLength({ min: 3 }),
+    validateFields,
+  ],
+  postLoginUser
+);
 
 // /auth/  GET validateToken
-router.get('/renew', validateToken);
+router.get('/renew', getValidateToken);
 
 export default router;
