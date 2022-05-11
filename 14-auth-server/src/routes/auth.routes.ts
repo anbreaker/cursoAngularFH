@@ -14,7 +14,7 @@ const router = Router();
 router.post(
   '/new',
   [
-    check('username', 'User name is required').notEmpty(),
+    check('name', 'User name is required').notEmpty(),
     check('email', 'Email is required').isEmail(),
     check('password', 'Password must be 3 characters').isLength({ min: 3 }),
     validateFields,
