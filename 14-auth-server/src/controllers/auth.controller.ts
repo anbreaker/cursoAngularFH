@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 
 import { User } from '../models/User.model';
+import { generateJWT } from '../helpers/generateJWT';
 
 // /api/auth/new POST create user
 export const postCreateUser = async (req: Request, res: Response) => {
@@ -20,7 +21,8 @@ export const postCreateUser = async (req: Request, res: Response) => {
     // const salt = bcrypt.genSaltSync(10);
     // dbUser.password = bcrypt.hashSync(password, salt);
 
-    // Create JWT
+    // Generate JWT
+    const token = await generateJWT(dbUser.id, name);
 
     // Save user on Db
     await dbUser.save();
@@ -28,8 +30,9 @@ export const postCreateUser = async (req: Request, res: Response) => {
     // Respond
     res.json({
       ok: true,
-      uid: dbUser.id,
       name,
+      uid: dbUser.id,
+      token,
     });
   } catch (error) {
     console.log(error);
@@ -39,20 +42,46 @@ export const postCreateUser = async (req: Request, res: Response) => {
 };
 
 // /api/auth/new POST create user
-export const postLoginUser = (req: Request, res: Response) => {
+export const postLoginUser = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
 
-    return res.json({ ok: true, message: 'Login user' });
+    const dbUser = await User.findOne({ email });
+
+    if (!dbUser) return res.status(400).json({ ok: false, msg: 'User not exists' });
+
+    // Compare passwords
+    const validPassword = bcrypt.compareSync(password, dbUser.password);
+
+    if (!validPassword) {
+      return res.status(400).json({ ok: false, msg: 'Password is not valid' });
+    }
+
+    // Generate JWT
+    const token = await generateJWT(dbUser.id, dbUser.name);
+
+    return res.json({
+      ok: true,
+      message: 'Login user',
+      name: dbUser.name,
+      uid: dbUser.id,
+      token,
+    });
   } catch (error) {
     console.log(error);
+
+    return res.status(500).json({ ok: false, message: 'Please, talk with admin.' });
   }
 };
 
 // /api/auth/renew GET create user
-export const getValidateToken = (req: Request, res: Response) => {
+export const getValidateToken = async (req: Request, res: Response) => {
   try {
-    return res.json({ ok: true, message: 'validateToken user' });
+    const { uid, name } = req;
+
+    const token = await generateJWT(uid!, name!);
+
+    return res.json({ ok: true, uid, name, token });
   } catch (error) {
     console.log(error);
   }

@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { check } from 'express-validator';
 
 import { validateFields } from '../middlewares/validateFields';
+import { validateJWT } from '../middlewares/validateJWT';
 import {
   postCreateUser,
   postLoginUser,
@@ -34,6 +35,6 @@ router.post(
 );
 
 // /auth/  GET validateToken
-router.get('/renew', getValidateToken);
+router.get('/renew', validateJWT, getValidateToken);
 
 export default router;
