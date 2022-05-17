@@ -1,1 +1,23 @@
-<p>chart-bar works!</p>
+<h4>Bar Chart Component</h4>
+<hr />
+
+<div class="row">
+  <div class="col">
+    <div style="display: block">
+      <canvas
+        baseChart
+        [data]="barChartData"
+        [options]="barChartOptions"
+        [type]="barChartType"
+      >
+      </canvas>
+    </div>
+    <button
+      class="btn btn-primary"
+      (click)="randomize()"
+      [hidden]="barShowButton"
+    >
+      Update
+    </button>
+  </div>
+</div>
