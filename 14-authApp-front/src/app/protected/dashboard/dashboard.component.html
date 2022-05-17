@@ -1,1 +1,11 @@
-<p>dashboard works!</p>
+<div class="container">
+  <h1>Dashboard Protected Works!</h1>
+  <hr />
+
+  <p>If you are seeing this, it is because you are authenticated.</p>
+
+  <h4>User Info</h4>
+  <pre>{{ user | json }}</pre>
+
+  <button class="btn btn-primary" (click)="logout()">Logout</button>
+</div>
