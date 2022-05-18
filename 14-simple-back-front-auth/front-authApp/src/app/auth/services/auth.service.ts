@@ -26,8 +26,6 @@ export class AuthService {
 
     return this.http.post<AuthResponse>(url, body).pipe(
       tap((response) => {
-        console.log(response);
-
         if (response.ok) {
           localStorage.setItem('token', response.token!);
 
@@ -50,8 +48,6 @@ export class AuthService {
 
     return this.http.post<AuthResponse>(url, body).pipe(
       tap((response) => {
-        console.log(response);
-
         if (response.ok) {
           localStorage.setItem('token', response.token!);
 
@@ -60,8 +56,6 @@ export class AuthService {
             uid: response.uid!,
             email: response.email!,
           };
-
-          console.log(this._user, '<---------LOGIN');
         }
       }),
       map((response) => response.ok),
