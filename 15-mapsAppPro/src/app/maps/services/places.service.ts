@@ -64,7 +64,11 @@ export class PlacesService {
 
         this.places = response.features;
 
-        this.mapService.createMarkersForPlaces(this.places);
+        this.mapService.createMarkersForPlaces(this.places, this.userLocation!);
       });
+  }
+
+  deletePlaces() {
+    this.places = [];
   }
 }
